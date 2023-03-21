@@ -28,3 +28,35 @@ body {
     flex-direction: column;
 }
 
+/* título da página */
+
+#calc h3 {
+    font-size: .8em;
+    font-weight: 300;
+    color: #666;
+}
+
+/* visor e operações feitas */
+
+#screen-operations {
+    text-align: right;
+}
+
+#previous-operation, #current-operation {
+    min-height: 1.6em;
+    padding: .2em;
+    overflow-wrap: break-word;
+}
+
+/* operações anteriores */
+
+#previous-operation {
+    color: #777;
+}
+
+/* operações atuais */
+
+#current-operation {
+    font-size: 3em;
+    font-weight: 700;
+}
