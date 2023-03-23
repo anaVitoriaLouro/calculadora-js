@@ -18,16 +18,16 @@ class Calculator {
             return;
         }
 
-        this.currentOperation += digit;
+        this.currentOperation = digit;
         this.updateScreen();
     }
 
     // Processando todas as operações da calculadora
     processOperation(operation) {
         // Checando valores vazios
-        if(this.currentOperationText.innerText === "") {
+        if (this.currentOperationText.innerText === "" && operation !== "C") {
             // Habilitando troca de operações
-            if(this.previousOperationText.innerText !== "") {
+            if (this.previousOperationText.innerText !== "") {
                 this.changeOperation(operation)
             }
         }
@@ -46,22 +46,38 @@ class Calculator {
                 this.updateScreen(operationValue, operation, current, previous);
                 break;
 
-                // Subtração
-                case "-":
+            // Subtração
+            case "-":
                 operationValue = previous - current;
                 this.updateScreen(operationValue, operation, current, previous);
                 break;
 
-                // Divisão
-                case "/":
+            // Divisão
+            case "/":
                 operationValue = previous / current;
                 this.updateScreen(operationValue, operation, current, previous);
                 break;
 
-                // Multiplicação
-                case "*":
+            // Multiplicação
+            case "*":
                 operationValue = previous * current;
                 this.updateScreen(operationValue, operation, current, previous);
+                break;
+
+            // Lógica para operações da calculadora
+            // Operação DEL
+            case "DEL":
+                this.processDelOperator();
+                break;
+
+            // Operação CEL
+            case "CE":
+                this.processClearCurrentOperation();
+                break;
+
+            // Operação C
+            case "C":
+                this.processClearAllOperation();
                 break;
             default:
                 return;
@@ -92,15 +108,32 @@ class Calculator {
     }
 
     // Habilitando mudança de operações matemáticas
-    changeOperation(operation){
+    changeOperation(operation) {
         const mathOperations = ["*", "/", "+", "-"];
 
-        if(!mathOperations.includes(operation)){
+        if (!mathOperations.includes(operation)) {
             return
         }
 
         this.previousOperationText.innerText = this.previousOperationText.innerText.slice(0, -1) + operation;
     }
+
+    // Deleta o dígito
+    processDelOperator() {
+        this.currentOperationText.innerText = this.currentOperationText.innerText.slice(0, -1);
+    }
+
+    // Limpa a operação atual
+    processClearCurrentOperation() {
+        this.currentOperationText.innerText = "";
+    }
+
+    // Limpa todas as operações
+    processClearAllOperation() {
+        this.currentOperationText.innerText = "";
+        this.previousOperationText.innerText = "";
+    }
+
 }
 
 
