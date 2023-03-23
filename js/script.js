@@ -24,16 +24,37 @@ class Calculator {
 
     // Processando todas as operações da calculadora
     processOperation(operation) {
+        
+
 
         // Selecionando valores atuais e anteriores
         let operationValue;
-        const previous = +this.previousOperationText.innerText;
+        const previous = +this.previousOperationText.innerText.split(" ")[0];
         const current = +this.currentOperationText.innerText;
 
         //verificando qual operação esta sendo executada
         switch (operation) {
+            // Soma
             case "+":
                 operationValue = previous + current;
+                this.updateScreen(operationValue, operation, current, previous);
+                break;
+
+                // Subtração
+                case "-":
+                operationValue = previous - current;
+                this.updateScreen(operationValue, operation, current, previous);
+                break;
+
+                // Divisão
+                case "/":
+                operationValue = previous / current;
+                this.updateScreen(operationValue, operation, current, previous);
+                break;
+
+                // Multiplicação
+                case "*":
+                operationValue = previous * current;
                 this.updateScreen(operationValue, operation, current, previous);
                 break;
             default:
