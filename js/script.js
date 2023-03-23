@@ -18,13 +18,19 @@ class Calculator {
             return;
         }
 
-        this.currentOperation = digit
+        this.currentOperation += digit;
         this.updateScreen();
     }
 
     // Processando todas as operações da calculadora
     processOperation(operation) {
-        
+        // Checando valores vazios
+        if(this.currentOperationText.innerText === "") {
+            // Habilitando troca de operações
+            if(this.previousOperationText.innerText !== "") {
+                this.changeOperation(operation)
+            }
+        }
 
 
         // Selecionando valores atuais e anteriores
@@ -83,6 +89,17 @@ class Calculator {
             this.previousOperationText.innerText = `${operationValue} ${operation}`;
             this.currentOperationText.innerText = "";
         }
+    }
+
+    // Habilitando mudança de operações matemáticas
+    changeOperation(operation){
+        const mathOperations = ["*", "/", "+", "-"];
+
+        if(!mathOperations.includes(operation)){
+            return
+        }
+
+        this.previousOperationText.innerText = this.previousOperationText.innerText.slice(0, -1) + operation;
     }
 }
 
