@@ -79,6 +79,11 @@ class Calculator {
             case "C":
                 this.processClearAllOperation();
                 break;
+
+            // Operador de Igual
+            case "=":
+                this.processEqualOperator();
+                break;
             default:
                 return;
         }
@@ -132,6 +137,13 @@ class Calculator {
     processClearAllOperation() {
         this.currentOperationText.innerText = "";
         this.previousOperationText.innerText = "";
+    }
+
+    // Processa a operação
+    processEqualOperator() {
+        const operation = previousOperationText.innerText.split(" ")[1];
+
+        this.processOperation(operation);
     }
 
 }
