@@ -6,9 +6,9 @@ const buttons = document.querySelectorAll("#buttons-container button");
 // Contrução da Calculadora
 class Calculator {
     constructor(previousOperationText, currentOperationText) {
-        this.previousOperationText = previousOperationText // valores impressos na tela
-        this.currentOperationText = currentOperationText  // valores impressos na tela
-        this.currentOperation = "" // valores digitados pelo usuário
+        this.previousOperationText = previousOperationText; // valores impressos na tela
+        this.currentOperationText = currentOperationText;  // valores impressos na tela
+        this.currentOperation = ""; // valores digitados pelo usuário
     }
 
     // adicionando dígitos no visor da calculadora
@@ -28,8 +28,9 @@ class Calculator {
         if (this.currentOperationText.innerText === "" && operation !== "C") {
             // Habilitando troca de operações
             if (this.previousOperationText.innerText !== "") {
-                this.changeOperation(operation)
+                this.changeOperation(operation);
             }
+            return;
         }
 
 
@@ -117,7 +118,7 @@ class Calculator {
         const mathOperations = ["*", "/", "+", "-"];
 
         if (!mathOperations.includes(operation)) {
-            return
+            return;
         }
 
         this.previousOperationText.innerText = this.previousOperationText.innerText.slice(0, -1) + operation;
